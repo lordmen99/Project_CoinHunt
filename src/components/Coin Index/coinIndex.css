@@ -1,0 +1,9 @@
+.indexBtn{
+    min-height: 80vh;
+}
+
+.indexBtn li {
+font-weight: 500;
+font-size: 18px;
+line-height: 1.9pc;
+}

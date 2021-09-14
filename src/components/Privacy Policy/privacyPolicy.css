@@ -1,0 +1,29 @@
+.privacy{
+    padding: 30px;
+    text-align: left;
+    max-width: 1200px;
+}
+
+.privacy h1, h2, h3, h4, h5, h6{
+    margin-bottom: .5rem;
+    line-height: 1.2;
+    font-weight: bold;
+}
+
+.privacy p {
+    margin-bottom: 0!important;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.privacy h1 {
+    font-size: 2.5rem;
+}
+
+.privacy h2 {
+    font-size: 2rem;
+}
+
+.privacy h3 {
+    font-size: 1.75rem;
+}

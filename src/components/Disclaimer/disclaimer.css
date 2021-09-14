@@ -1,0 +1,17 @@
+
+.contentwrapper {    
+    padding-top: 50px;
+    padding-left: 250px;
+    padding-right: 250px;
+    font-size: 17px;
+    min-height: 80vh;
+}
+.heading {
+    font-size: 28px;
+    padding-bottom: 0px;
+    margin: 5px;
+
+}
+.contentwrapper p {
+    font-weight: bold;
+}

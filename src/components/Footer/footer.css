@@ -1,0 +1,45 @@
+.footer {
+    padding: 20px 0px;
+}
+
+.footerMenu{
+    margin-right: 50px;
+}
+
+.footerMenu ul{
+    display: flex;
+    justify-content: center;
+}
+.footerMenu ul li {
+    display: inline;
+    list-style: none;
+    padding-left: 30px;
+}
+
+.footerMenu ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #677079;
+    font-size: 18px;
+}
+
+.footerMenu ul li a:hover{
+
+    color: #343a40;
+}
+
+.copyRight{
+    display: flex;
+    justify-content: center;
+}
+
+.copyRight p {
+    font-weight: 500;
+    color: #aaa;
+    padding-top: 5px;
+}
+
+.footerIcons{
+    display: flex;
+    justify-content: center;
+}
