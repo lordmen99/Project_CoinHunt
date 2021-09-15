@@ -1,8 +1,10 @@
 import Reactm, { useState } from 'react'
+import { connect } from 'react-redux';
+import { registerUser } from '../../redux/demo/userAction';
 import './signup.css'
 
 
-function Signup() {
+function Signup({registerUserAction, error, success, loading}) {
 
     const [name, setName] = useState("");
     const [disName, setDisName] = useState("");
@@ -11,7 +13,7 @@ function Signup() {
 
     function submitForm(e) {
         e.preventDefault();
-
+        registerUserAction({name, displayName: disName, email, password})
         setName("");
         setDisName("");
         setEmail("");
@@ -111,4 +113,11 @@ function Signup() {
     )
 }
 
-export default Signup
+const mapStateToProps = ({ authUser }) => {
+    const { loading, error, success } = authUser;
+    return { loading, error, success };
+};
+  
+export default connect(mapStateToProps, {
+    registerUserAction: registerUser
+})(Signup)
