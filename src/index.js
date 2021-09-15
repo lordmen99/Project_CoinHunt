@@ -1,19 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import { Provider } from 'react-redux'
-import store from './epics/store'
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import 'antd/dist/antd.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import { Provider } from "react-redux";
+import { configureStore } from "./redux/store";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "antd/dist/antd.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
+    <Provider store={configureStore()}>
+      <div className="App">
+        <App />
+      </div>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
@@ -21,7 +23,8 @@ ReactDOM.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-{/* <Provider store={store}>
+{
+  /* <Provider store={store}>
 
 componet 1
 
@@ -30,4 +33,5 @@ compoent 3
 componet 4 
 
 component 5
-    </Provider> */}
+    </Provider> */
+}

@@ -1,39 +1,26 @@
-import React, { useState } from 'react'
-import { Button } from 'antd'
-import { useSelector, useDispatch } from 'react-redux'
-import googleIcon from '../../Images/google-logo.png'
-import email from '../../Images/email.png'
-import twitter from '../../Images/twitter.png'
-
+import React, { useEffect, useState } from 'react'
+import {connect} from 'react-redux'
 import './login.css'
+import { getCurrentUser } from '../../helpers/utils'
+import { Redirect } from 'react-router'
+import { loginUser, logoutUser } from '../../redux/auth/actions'
 
-function Login() {
-    const dispatch = useDispatch()
-    const user = useSelector((state) => state.login.user)
-    
+function Login({history, loading, success, error, logoutUserAction}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     function submitForm(e) {
         e.preventDefault();
-        dispatch({
-            type: "SET_CURRENT_USER",
-            payload: {
-                user: {
-                    first_name: 'asd'
-                },
-            },
-        });
+        logoutUserAction(history, {email, password})
         setEmail("");
         setPassword("");
     }
 
 
-    console.log('aaaaaa', user)
-
+const isLogin = getCurrentUser()
     return (
         <div className="addCoinWrapper">
-
+            {isLogin && <Redirect to={'/notfound'} />}
             <div className="signup">
 
                 <div className="container">
@@ -130,4 +117,13 @@ function Login() {
     )
 }
 
-export default Login
+const mapStateToProps = ({ authUser }) => {
+    const { loading, error, success } = authUser;
+    return { loading, error, success };
+  };
+  
+  export default connect(mapStateToProps, {
+    loginUserAction: loginUser,
+    logoutUserAction: logoutUser
+  })(Login);
+  

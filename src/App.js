@@ -12,7 +12,7 @@ import AddCoin from './components/Add Coin/AddCoin.jsx'
 import AddCoin_Form from './components/AddCoin Form/AddCoin_Form.jsx'
 import Contact from './components/ContactUs/Contactus.jsx'
 
-import login from './components/Login/Login.jsx'
+import Login from './components/Login/Login.jsx'
 import Signup from './components/SignUp/Signup.jsx'
 
 import CoinIndex from './components/Coin Index/Coin_Index'
@@ -26,12 +26,8 @@ function App() {
   return (
 
     <Router>
-
-      <div className="App">
         <TopBar />
-
         <Switch>
-
           <Route path="/" exact component={HeaderTab} ></Route>
 
           {/* Footer */}
@@ -40,9 +36,7 @@ function App() {
           <Route path="/PrivacyPolicy" component={PrivacyPolicy} ></Route>
           <Route path="/TermsandCondition" component={TermsCondition}></Route>
           <Route path="/CoinIndex" component={CoinIndex}></Route>
-
           <Route path='/Coin/HashPanda' component={HashPanda}></Route>
-
 
           {/* Main Menu */}
 
@@ -53,18 +47,10 @@ function App() {
           <Route path="/ContactUs" component={Contact}></Route>
 
           {/* Login - SignUp*/}
-
-          <Route path="/Login" component={login}></Route>
+          <Route path="/Login" component={Login}></Route>
           <Route path="/Signup" component={Signup}></Route>
-
-
-
         </ Switch>
-
         <Footer />
-
-
-      </div>
     </Router>
   );
 }

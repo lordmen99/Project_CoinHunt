@@ -1,23 +1,22 @@
-.topBar{
+.topBar {
     display: flex;
     justify-content: space-between;
     background-color: rgb(22, 22, 22);
     align-items: center;
     padding: 10px 20px;
-
 }
 
-.rightContainer{
+.rightContainer {
     padding-top: 10px;
 }
 
-.main_logo{
+.main_logo {
     width: 150px;
     height: 50px;
     cursor: pointer;
 }
 
-.menuContainer ul{
+.menuContainer ul {
     display: flex;
 }
 
@@ -26,19 +25,21 @@
     padding-right: 15px;
 }
 
-.loginBtn Button {
+.loginBtn a,
+.signupBtn a {
     border-color: green !important;
     background-color: green !important;
-    color:white !important;
+    color: white !important;
+    padding: 8px 12px;
+    border-radius: 5px;
 }
 
-.signupBtn Button:hover {
+.signupBtn a:hover {
     border-color: green !important;
     background-color: green !important;
-    color:white !important;
+    color: white !important;
 }
 
-
-.menuBtn{
+.menuBtn {
     background-color: green;
 }
