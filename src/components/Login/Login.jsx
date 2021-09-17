@@ -12,7 +12,7 @@ function Login({history, currentUser, loading, success, error, loginUserAction})
 
     function submitForm(e) {
         e.preventDefault();
-        loginUserAction(history, {email, password})
+        loginUserAction({email, password}, history)
         setEmail("");
         setPassword("");
     }

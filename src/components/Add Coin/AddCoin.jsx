@@ -1,11 +1,11 @@
 import React from "react";
 import { Button } from "antd";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import "./addCoin.css";
 import { connect } from "react-redux";
 
-function AddCoin() {
+function AddCoin({ currentUser }) {
   return (
     <div className="addCoinWrapper">
       <div className="createBtn">
@@ -21,42 +21,39 @@ function AddCoin() {
         </Button>
       </div>
 
-      <p
-        style={{
-          marginTop: "10px",
-          fontWeight: "bold",
-          fontSize: "18px",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        Please sign in to add your coin.
-      </p>
-
-      <div className="loginButtons">
-        <div>
-          {!currentUser ? (
+      <div className="loginButtons" style={{textAlign: 'center'}}>
+        {!currentUser && (
+          <div>
+            <p
+              style={{
+                marginTop: "10px",
+                fontWeight: "bold",
+                fontSize: "18px",
+                textAlign: "center",
+              }}
+            >
+              Please sign in to add your coin.
+            </p>
             <button className="btnRegister">
-              <span style={{ color: "#fff", fontSize: "16px" }}>
-                <Link to="/login">Login</Link>
-              </span>
+              <Link style={{ color: "#fff", fontSize: "16px" }} to="/login">
+                Login
+              </Link>
             </button>
-          ) : (
-            <a onClick={(e) => (window.location.href = "/AddCoinForm")}>
-              Form View
-            </a>
-          )}
-        </div>
-
-        <div></div>
+          </div>
+        )}
+        {currentUser && (
+          <a onClick={(e) => (window.location.href = "/AddCoinForm")}>
+            Form View
+          </a>
+        )}
       </div>
     </div>
   );
 }
 
 const mapStateToProps = ({ authUser }) => {
-    const { loading, error, success, currentUser } = authUser;
-    return { loading, error, success, currentUser };
-  };
+  const { currentUser } = authUser;
+  return { currentUser };
+};
 
 export default connect(mapStateToProps, null)(AddCoin);

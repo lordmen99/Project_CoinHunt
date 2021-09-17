@@ -68,6 +68,7 @@ const loginWithEmailPasswordAsync = async(email, password) =>
 function* loginWithEmailPassword({ payload }) {
     const { email, password } = payload.user;
     const { history } = payload;
+    console.log(email, password);
     try {
         const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
         if (!loginUser.message) {
@@ -81,7 +82,6 @@ function* loginWithEmailPassword({ payload }) {
             yield put(loginUserError(loginUser.message));
         }
     } catch (error) {
-        console.log(error);
         yield put(loginUserError(error.message));
     }
 }
