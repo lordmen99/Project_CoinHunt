@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 import "./topBar.css";
 import { connect } from "react-redux";
-
+import {logoutUser} from '../../redux/auth/actions'
 const { Search } = Input;
 const { SubMenu } = Menu;
 
@@ -46,7 +46,7 @@ const menu = (
   </Menu>
 );
 
-function TopBar({ currentUser }) {
+function TopBar({ currentUser, signOutAction, history }) {
   return (
     <div className="topBar">
       <div className="leftContainer">
@@ -82,7 +82,7 @@ function TopBar({ currentUser }) {
             {}
             {/* <li><Dropdown.Button overlay={menu} style={{ backgroundColor: "black" }}>Menu</Dropdown.Button></li> */}
             {/* <li><Button type="default">Menu</Button></li> */}
-            {currentUser && (
+            {!currentUser ? (
               <>
                 <li className="signupBtn">
                   <Link to={"/Signup"}>Signup</Link>
@@ -91,7 +91,12 @@ function TopBar({ currentUser }) {
                   <Link to={"/login"}>Login</Link>
                 </li>
               </>
-            )}
+            ): 
+            <>
+            <li className="loginBtn">
+                  <Link to={"#"} onClick={() => signOutAction(history)}>Signout</Link>
+                </li>
+            </>}
           </ul>
         </div>
       </div>
@@ -104,4 +109,6 @@ const mapStateToProps = ({ authUser }) => {
   return { currentUser };
 };
 
-export default connect(mapStateToProps, {})(TopBar);
+export default connect(mapStateToProps, {
+  signOutAction: logoutUser 
+})(TopBar);

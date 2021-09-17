@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import './login.css'
 import { getCurrentUser } from '../../helpers/utils'
 import { Redirect } from 'react-router'
-import { loginUser, logoutUser } from '../../redux/auth/actions'
+import { loginUser } from '../../redux/auth/actions'
 
-function Login({history, loading, success, error, logoutUserAction}) {
+function Login({history, currentUser, loading, success, error, loginUserAction}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     function submitForm(e) {
         e.preventDefault();
-        logoutUserAction(history, {email, password})
+        loginUserAction(history, {email, password})
         setEmail("");
         setPassword("");
     }
 
-
-const isLogin = getCurrentUser()
+    console.log(loading, success, error);
     return (
         <div className="addCoinWrapper">
-            {isLogin && <Redirect to={'/notfound'} />}
+            {currentUser && <Redirect to={'/'} />}
             <div className="signup">
 
                 <div className="container">
@@ -61,15 +61,15 @@ const isLogin = getCurrentUser()
 
                             </div>
 
-                            <button className="btnRegister" >
+                            <button onClick={submitForm} className="btnRegister" >
 
-                                <span onClick={submitForm} style={{ color: "#fff", fontSize: "16px" }}>
+                                <span style={{ color: "#fff", fontSize: "16px" }}>
                                     Login
                                 </span>
 
                             </button>
 
-                            <a className="memberBtn" onClick={e => window.location.href = "/Signup"}>Sign up</a>
+                            <Link className="memberBtn" to={"/Signup"} >Sign up</Link>
 
 
 
@@ -118,12 +118,11 @@ const isLogin = getCurrentUser()
 }
 
 const mapStateToProps = ({ authUser }) => {
-    const { loading, error, success } = authUser;
-    return { loading, error, success };
+    const { loading, error, success, currentUser } = authUser;
+    return { loading, error, success, currentUser };
   };
   
   export default connect(mapStateToProps, {
-    loginUserAction: loginUser,
-    logoutUserAction: logoutUser
+    loginUserAction: loginUser
   })(Login);
   

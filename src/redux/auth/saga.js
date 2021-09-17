@@ -35,7 +35,7 @@ const RegisterAsync = async(email, password, name, displayName, ) =>
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, password, name, displayName, })
+        body: JSON.stringify({ email, password, username: name, displayName })
     })
     .then(res => res.json())
     .then(res => res)
@@ -46,7 +46,9 @@ function* registerUser({ payload }) {
     try {
         const registerUser = yield call(RegisterAsync, email, password, name, displayName, );
         yield put(registerUserSuccess(registerUser.message));
+        console.log(registerUser);
     } catch (error) {
+        console.log(error, 'err');
         yield put(registerUserError(error.message));
     }
 }
@@ -57,7 +59,7 @@ const loginWithEmailPasswordAsync = async(email, password) =>
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username: email, password })
+        body: JSON.stringify({ email, password })
     })
     .then(res => res.json())
     .then(res => res)
@@ -68,11 +70,18 @@ function* loginWithEmailPassword({ payload }) {
     const { history } = payload;
     try {
         const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
-        const item = {...loginUser };
-        setCurrentUser(item);
-        yield put(loginUserSuccess(item));
-        history.push('/');
+        if (!loginUser.message) {
+            const item = {...loginUser };
+            console.log(loginUser, item);
+
+            setCurrentUser(item);
+            yield put(loginUserSuccess(item));
+            history.push('/');
+        } else {
+            yield put(loginUserError(loginUser.message));
+        }
     } catch (error) {
+        console.log(error);
         yield put(loginUserError(error.message));
     }
 }

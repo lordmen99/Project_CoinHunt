@@ -1,6 +1,6 @@
 import Reactm, { useState } from 'react'
 import { connect } from 'react-redux';
-import { registerUser } from '../../redux/demo/userAction';
+import { registerUser } from '../../redux/auth/actions';
 import './signup.css'
 
 
@@ -20,6 +20,7 @@ function Signup({registerUserAction, error, success, loading}) {
         setPassword("");
     }
 
+    console.log(loading, error, success)
     return (
         <>
 
