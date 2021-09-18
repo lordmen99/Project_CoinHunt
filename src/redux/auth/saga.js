@@ -44,12 +44,10 @@ const RegisterAsync = async(email, password, name, displayName, ) =>
 function* registerUser({ payload }) {
     const { name, displayName, email, password } = payload.user;
     try {
-        const registerUser = yield call(RegisterAsync, email, password, name, displayName, );
-        yield put(registerUserSuccess(registerUser.message));
-        console.log(registerUser);
+        const registerUser = yield call(RegisterAsync, email, password, name, displayName);
+        yield put(registerUserSuccess(registerUser.msg));
     } catch (error) {
-        console.log(error, 'err');
-        yield put(registerUserError(error.message));
+        yield put(registerUserError('Network Error'));
     }
 }
 const loginWithEmailPasswordAsync = async(email, password) =>
@@ -68,12 +66,10 @@ const loginWithEmailPasswordAsync = async(email, password) =>
 function* loginWithEmailPassword({ payload }) {
     const { email, password } = payload.user;
     const { history } = payload;
-    console.log(email, password);
     try {
         const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
         if (!loginUser.message) {
             const item = {...loginUser };
-            console.log(loginUser, item);
 
             setCurrentUser(item);
             yield put(loginUserSuccess(item));
