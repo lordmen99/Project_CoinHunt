@@ -4,12 +4,18 @@ import { Link } from "react-router-dom";
 
 import "./addCoin.css";
 import { connect } from "react-redux";
+import Coinform from "../AddCoin Form/AddCoin_Form"
 
 function AddCoin({ currentUser }) {
   return (
     <div className="addCoinWrapper">
-      <div className="createBtn">
-        <Button
+      
+
+      <div className="loginButtons" style={{textAlign: 'center'}}>
+        {!currentUser && (
+          <div>
+            <div className="createBtn">
+            <Button
           type="default"
           onClick={(e) =>
             window.open(
@@ -19,11 +25,7 @@ function AddCoin({ currentUser }) {
         >
           Create your Coin
         </Button>
-      </div>
-
-      <div className="loginButtons" style={{textAlign: 'center'}}>
-        {!currentUser && (
-          <div>
+             </div>
             <p
               style={{
                 marginTop: "10px",
@@ -32,19 +34,19 @@ function AddCoin({ currentUser }) {
                 textAlign: "center",
               }}
             >
-              Please sign in to add your coin.
+              Please Log in to add your coin.
             </p>
+            
             <button className="btnRegister">
               <Link style={{ color: "#fff", fontSize: "16px" }} to="/login">
                 Login
               </Link>
             </button>
+            
           </div>
         )}
         {currentUser && (
-          <a onClick={(e) => (window.location.href = "/AddCoinForm")}>
-            Form View
-          </a>
+          <Coinform/>
         )}
       </div>
     </div>
